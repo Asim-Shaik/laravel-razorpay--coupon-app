@@ -41,22 +41,28 @@
                             </div>
   
                             <div class="card-body text-center">
+                                <?php 
+                                if(isset($_POST['btc'])){
+                                    echo 'you clicked the button';
+                                }
+                                ?>
                                 <form class="form" action="{{ route('razorpay.payment.store') }}" method="POST" >
-                                    <input class="input"  type="text" name="name" placeholder="name"></input>
-                                    <input class="input" type="email" name="email" placeholder="email"></input>
-                                    <input class="input" type="tel" name="phone" placeholder="phone"></input>
+                                    <input class="input"  type="text" name="name" placeholder="name" required></input>
+                                    <input class="input" type="email" name="email" placeholder="email" required></input>
+                                    <input class="input" type="tel" name="phone" placeholder="phone" required></input>
                                     @csrf
-                                        <script  src="https://checkout.razorpay.com/v1/checkout.js"
-                                        data-key="{{ env('RAZORPAY_KEY') }}"
-                                        data-amount="20000"
-                                        data-buttontext="Pay 200 INR"
-                                        data-name="ItSolutionStuff.com"
-                                        data-description="Razerpay"
-                                        data-image="https://www.itsolutionstuff.com/frontTheme/images/logo.png"
-                                        data-prefill.name="name"
-                                        data-prefill.email="email"
-                                        data-theme.color="#ff7529">
-                                    </script>
+                                    <!-- <input type="submit" name="btc"value="pay now"> -->
+                                             <script  src="https://checkout.razorpay.com/v1/checkout.js"
+                                            data-key="{{ env('RAZORPAY_KEY') }}"
+                                            data-amount="200000"
+                                            data-buttontext="Pay 2000 INR"
+                                            data-name=""
+                                            data-description="Razorpay"
+                                            data-image=""
+                                            data-prefill.name="name"
+                                            data-prefill.email="email"
+                                            data-theme.color="#ff7529">
+                                            </script> 
                                 </form>
                             </div>
                         </div>
