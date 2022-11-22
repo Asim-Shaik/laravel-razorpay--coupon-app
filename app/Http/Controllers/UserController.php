@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Laravel\Sanctum\HasApiTokens;
 class UserController extends Controller
 {
@@ -42,5 +44,28 @@ class UserController extends Controller
         return [
             'success' => $success
         ];
+    }
+    public function otp (){
+         try{
+
+            $api_key = '3636B555FAD47A';
+            $contacts = '9814542731';
+            $from = 'Pharmseva';
+            $sms_text = urlencode('This is a test OTP 756887');
+
+            $api_url = "https://samayasms.com.np/smsapi/index.php?key=".$api_key."&campaign=XXXXXX&routeid=XXXXXX&type=text&contacts=".$contacts."&senderid=".$from."&msg=".$sms_text;
+
+            $response = Http::withHeaders([
+                'accept' => 'application/json',
+                'content-type' => 'application/json',
+            ])->get($api_url);
+    
+            return $response;
+        }catch(Exception $e){
+            return response()->json([
+                "status"=> 500,
+                "message" => $e->getMessage(),
+            ]);
+        }
     }
 }

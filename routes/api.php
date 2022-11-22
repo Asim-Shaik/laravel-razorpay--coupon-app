@@ -27,3 +27,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::put('/user/{user}',[UserController::class, 'updateUser']);
 
 Route::post('payment',[PaymentController::class, 'store'])->name('razorpay.payment.store');
+Route::get('otp',[UserController::class, 'otp']);
